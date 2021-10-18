@@ -1,0 +1,23 @@
+version: '3.3'
+
+services:
+  mongo_db:
+    container_name: mongo_db
+    image: mongo:4.4
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_volume:/data/db
+    restart: always
+    env_file:
+      - ./src/.env
+    
+  app_types:
+    build: .
+    depends_on:
+      - mongo_db
+    restart: always
+    ports:
+      - 3000:3000
+volumes:
+  mongo_volume: {}
