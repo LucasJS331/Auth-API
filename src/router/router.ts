@@ -24,7 +24,7 @@ router.post("/login", async (req,res)=>{
 
 })
 
-router.post("/save", userMW.userToken, userMW.validate,async (req,res)=>{
+router.post("/create", userMW.userToken, userMW.validate,async (req,res)=>{
     let {name,email,password} = req.body;
 
     let result = await userService.save({name,email,password});
